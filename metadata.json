@@ -1,5 +1,5 @@
 {
-  "name": "AI Wedding Photo Creator",
-  "description": "Upload a photo of a couple and use AI to transform it into a beautiful wedding picture.",
+  "name": "AI Image Stylizer",
+  "description": "Upload photos and use AI to transform them into various artistic styles.",
   "requestFramePermissions": []
 }

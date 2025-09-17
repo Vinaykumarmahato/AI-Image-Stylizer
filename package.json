@@ -1,5 +1,5 @@
 {
-  "name": "ai-wedding-photo-creator",
+  "name": "ai-image-stylizer",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -11,7 +11,8 @@
   "dependencies": {
     "react-dom": "^19.1.1",
     "react": "^19.1.1",
-    "@google/genai": "^1.17.0"
+    "@google/genai": "^1.17.0",
+    "uuid": "^13.0.0"
   },
   "devDependencies": {
     "@types/node": "^22.14.0",
