@@ -1,0 +1,5 @@
+{
+  "name": "AI Wedding Photo Creator",
+  "description": "Upload a photo of a couple and use AI to transform it into a beautiful wedding picture.",
+  "requestFramePermissions": []
+}
