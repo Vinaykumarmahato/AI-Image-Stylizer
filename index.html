@@ -10,6 +10,24 @@
       body {
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+        background-color: #0c0a18;
+        overflow-x: hidden;
+      }
+      
+      .aurora-background {
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        z-index: -1;
+        background: radial-gradient(ellipse at 20% 30%, #3a2d6b, transparent 50%),
+                    radial-gradient(ellipse at 80% 60%, #5a4b9b, transparent 70%);
+        opacity: 0.4;
+        filter: blur(40px);
+        animation: aurora-animation 20s ease-in-out infinite alternate;
+      }
+
+      @keyframes aurora-animation {
+        0% { transform: scale(1, 1) rotate(0deg) translateX(0) translateY(0); }
+        100% { transform: scale(1.5, 1.5) rotate(10deg) translateX(5%) translateY(5%); }
       }
     </style>
   <script type="importmap">
@@ -19,13 +37,15 @@
     "react/": "https://aistudiocdn.com/react@^19.1.1/",
     "react": "https://aistudiocdn.com/react@^19.1.1",
     "@google/genai": "https://aistudiocdn.com/@google/genai@^1.17.0",
-    "uuid": "https://aistudiocdn.com/uuid@^13.0.0"
+    "uuid": "https://aistudiocdn.com/uuid@^13.0.0",
+    "framer-motion": "https://aistudiocdn.com/framer-motion@^11.3.11"
   }
 }
 </script>
 </head>
   <body>
     <div id="root"></div>
+    <div class="aurora-background"></div>
     <script type="module" src="/index.tsx"></script>
   </body>
 </html>
