@@ -22,59 +22,24 @@ It features a **secure Java Spring Boot backend** and a **dynamic, beautifully a
 
 ---
 
+
+
 ## 💻 Technology Stack
 
 ### 🎨 Frontend
-- 🔵 **TypeScript** — Type-safe coding
-- ⚛️ **React** — Component-driven UI
-- 💨 **Tailwind CSS** — Utility-first styling
-- 🎬 **Framer Motion** — Smooth animations
-- 📦 **Vite / esbuild** — Blazing-fast builds
+- 🔵 **TypeScript** — Robust, type-safe code
+- ⚛️ **React** — Component-based UI
+- 💨 **Tailwind CSS** — Utility-first responsive styling
+- 🎬 **Framer Motion** — Declarative UI animations
+- 📦 **Vite / esbuild** — Lightning-fast development
 
 ### ⚙️ Backend
-- ☕ **Java & Spring Boot** — Secure REST API
-- 🤖 **Google AI for Java SDK** — Gemini integration
+- ☕ **Java & Spring Boot** — Scalable, secure REST API
+- 🤖 **Google AI for Java SDK** — Connects with Gemini API
 - 📦 **Maven** — Dependency management
 
-### 🧠 AI
+### 🧠 Artificial Intelligence
 - 🤖 **Google Gemini API** — Core generative model powering transformations
-
----
-
-## 💻 Technology Stack
-
-<div style="display: flex; justify-content: space-between;">
-
-<div>
-  <h3>🎨 Frontend</h3>
-  <ul>
-    <li>🔵 **TypeScript**: For robust, type-safe code.</li>
-    <li>⚛️ **React**: For building a fast, component-based UI.</li>
-    <li>💨 **Tailwind CSS**: For utility-first, responsive styling.</li>
-    <li>🎬 **Framer Motion**: For declarative and fluid UI animations.</li>
-    <li>📦 **Vite / esbuild**: For a lightning-fast development experience.</li>
-  </ul>
-</div>
-
-<div>
-  <h3>⚙️ Backend</h3>
-  <ul>
-    <li>☕ **Java & Spring Boot**: For a powerful, scalable, and secure REST API.</li>
-    <li>🤖 **Google AI for Java SDK**: For seamless communication with the Gemini API.</li>
-    <li>📦 **Maven**: For managing project dependencies.</li>
-  </ul>
-</div>
-
-<div>
-  <h3>🧠 Artificial Intelligence</h3>
-  <ul>
-    <li>🤖 **Google Gemini API**: The core generative model that powers the image transformations.</li>
-  </ul>
-</div>
-
-</div>
-
----
 
 ## 🛠️ Setup & Installation
 
