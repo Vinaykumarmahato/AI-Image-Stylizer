@@ -17,32 +17,22 @@ Welcome to the AI Image Stylizer! This is a powerful, client-side web applicatio
 - 💅 **Modern & Animated UI**: The interface is built for a premium user experience, featuring a "glassmorphism" design, a dynamic "aurora" background, and fluid animations powered by Framer Motion.
 
 ---
-
 ## 💻 Technology Stack
 
-<div style="display: flex; justify-content: space-between;">
+### 🎨 Frontend
+- 🔵 **TypeScript** — Robust, type-safe code
+- ⚛️ **React** — Component-based UI
+- 💨 **Tailwind CSS** — Utility-first responsive styling
+- 🎬 **Framer Motion** — Declarative UI animations
+- 📦 **Vite / esbuild** — Lightning-fast development
 
-<div>
-  <h3>🎨 Frontend</h3>
-  <ul>
-    <li>🔵 **TypeScript**: For robust, type-safe code.</li>
-    <li>⚛️ **React**: For building a fast, component-based UI.</li>
-    <li>💨 **Tailwind CSS**: For utility-first, responsive styling.</li>
-    <li>🎬 **Framer Motion**: For declarative and fluid UI animations.</li>
-    <li>📦 **ES Modules & Import Maps**: For modern, browser-native module loading without a build step.</li>
-  </ul>
-</div>
+### ⚙️ Backend
+- ☕ **Java & Spring Boot** — Scalable, secure REST API
+- 🤖 **Google AI for Java SDK** — Connects with Gemini API
+- 📦 **Maven** — Dependency management
 
-<div>
-  <h3>🧠 Artificial Intelligence</h3>
-  <ul>
-    <li>🤖 **Google Gemini API**: The core generative model that powers the image transformations.</li>
-    <li>📦 **@google/genai SDK**: The official library for interacting with the Gemini API from the frontend.</li>
-  </ul>
-</div>
-
-</div>
-
+### 🧠 Artificial Intelligence
+- 🤖 **Google Gemini API** — Core generative model powering transformations
 ---
 
 ## 🛠️ How to Run
