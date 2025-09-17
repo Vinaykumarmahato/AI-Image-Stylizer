@@ -1,21 +1,43 @@
-
 # ✨ AI Image Stylizer 🎨
 
-Welcome to the AI Image Stylizer! This is a full-stack web application that leverages the power of Google's Generative AI to transform your photos into stunning, unique works of art. It features a secure Java Spring Boot backend and a dynamic, beautifully animated React frontend.
+Welcome to the **AI Image Stylizer**!  
+This is a full-stack web application that leverages the power of **Google's Generative AI** to transform your photos into stunning, unique works of art.  
+It features a **secure Java Spring Boot backend** and a **dynamic, beautifully animated React frontend**.
 
-![Demo GIF Placeholder](https://placehold.co/800x400/0c0a18/a78bfa?text=App+Demo+GIF)
+---
+
+![Demo GIF](https://placehold.co/800x400/0c0a18/a78bfa?text=App+Demo+GIF)  
 *(Imagine a cool GIF of the app in action here!)*
 
 ---
 
 ## 🚀 Key Features
 
-- ✨ **AI-Powered Transformations**: Use natural language text prompts to describe exactly how you want your images to be restyled.
-- 🎨 **Creative Style Presets**: Get started quickly with one-click style presets like *Cinematic*, *Vintage*, *Fantasy*, *Anime*, and *Watercolor*.
-- 🚀 **Multi-Image Processing Queue**: Upload and process multiple images at once. The intelligent queue provides real-time status updates (`Queued`, `Processing...`, `Done`, `Error`) for each image.
-- ↔️ **Interactive Before & After Slider**: A custom-built, highly engaging slider lets you seamlessly compare the original photo with the new AI-generated version.
-- 💅 **Modern & Animated UI**: The interface is built for a premium user experience, featuring a "glassmorphism" design, a dynamic "aurora" background, and fluid animations powered by Framer Motion.
-- 🔒 **Secure Client-Server Architecture**: The AI API key is kept completely secret and secure on the Java backend, never exposed to the user's browser.
+- ✨ **AI-Powered Transformations**: Restyle your photos using natural language prompts.
+- 🎨 **Creative Style Presets**: One-click styles — *Cinematic*, *Vintage*, *Fantasy*, *Anime*, *Watercolor*.
+- 🚀 **Multi-Image Queue**: Upload and process multiple images with live status (`Queued`, `Processing`, `Done`, `Error`).
+- ↔️ **Before & After Slider**: Compare original vs. AI-stylized photo with an interactive slider.
+- 💅 **Modern Animated UI**: Glassmorphism, aurora backgrounds, and smooth Framer Motion animations.
+- 🔒 **Secure Architecture**: API key hidden on the backend — never exposed in the browser.
+
+---
+
+## 💻 Technology Stack
+
+### 🎨 Frontend
+- 🔵 **TypeScript** — Type-safe coding
+- ⚛️ **React** — Component-driven UI
+- 💨 **Tailwind CSS** — Utility-first styling
+- 🎬 **Framer Motion** — Smooth animations
+- 📦 **Vite / esbuild** — Blazing-fast builds
+
+### ⚙️ Backend
+- ☕ **Java & Spring Boot** — Secure REST API
+- 🤖 **Google AI for Java SDK** — Gemini integration
+- 📦 **Maven** — Dependency management
+
+### 🧠 AI
+- 🤖 **Google Gemini API** — Core generative model powering transformations
 
 ---
 
