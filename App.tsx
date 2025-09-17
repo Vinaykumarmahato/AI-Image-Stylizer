@@ -29,6 +29,7 @@ const App: React.FC = () => {
   const [imageJobs, setImageJobs] = useState<ImageJob[]>([]);
   const [prompt, setPrompt] = useState<string>('A beautiful, highly detailed, photorealistic image.');
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
+  const [apiKey, setApiKey] = useState<string>('');
   
   const handleImagesUpload = (files: FileList) => {
     const newJobs: ImageJob[] = Array.from(files).map(file => ({
@@ -58,14 +59,14 @@ const App: React.FC = () => {
 
   const handleGenerateClick = useCallback(async () => {
     const jobsToProcess = imageJobs.filter(job => job.status === 'queued');
-    if (jobsToProcess.length === 0) return;
+    if (jobsToProcess.length === 0 || !apiKey) return;
 
     setIsProcessing(true);
 
     for (const job of jobsToProcess) {
       setImageJobs(prev => prev.map(j => j.id === job.id ? { ...j, status: 'processing' } : j));
       try {
-        const generatedImageBase64 = await editImageWithAI(job.file, prompt);
+        const generatedImageBase64 = await editImageWithAI(job.file, prompt, apiKey);
         const imageUrl = `data:image/png;base64,${generatedImageBase64}`;
         setImageJobs(prev => prev.map(j => j.id === job.id ? { ...j, status: 'done', generatedUrl: imageUrl } : j));
       } catch (err) {
@@ -76,7 +77,7 @@ const App: React.FC = () => {
     }
 
     setIsProcessing(false);
-  }, [imageJobs, prompt]);
+  }, [imageJobs, prompt, apiKey]);
 
   const queuedJobs = imageJobs.filter(job => job.status === 'queued' || job.status === 'processing');
   const completedJobs = imageJobs.filter(job => job.status === 'done' || job.status === 'error');
@@ -94,6 +95,20 @@ const App: React.FC = () => {
           <div className="p-8 space-y-8">
             <h2 className="text-2xl font-bold text-indigo-300 mb-4 border-b-2 border-indigo-500/20 pb-4">1. Setup Your Transformation</h2>
             
+            <div className="space-y-4">
+              <label htmlFor="api-key-input" className="text-xl font-semibold text-gray-200">Your Google AI API Key</label>
+              <p className="text-sm text-gray-400">Your key is required to make requests to the Gemini API. It's only used for this session and is never stored.</p>
+              <input
+                id="api-key-input"
+                type="password"
+                value={apiKey}
+                onChange={(e) => setApiKey(e.target.value)}
+                className="w-full p-3 bg-gray-900/50 border border-gray-700 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-300 text-gray-200"
+                placeholder="Enter your key here..."
+                aria-label="Google AI API Key"
+              />
+            </div>
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="space-y-6">
                  <h3 className="text-xl font-semibold text-gray-200">Upload Images</h3>
@@ -166,10 +181,10 @@ const App: React.FC = () => {
             <div className="text-center pt-4">
               <motion.button
                 onClick={handleGenerateClick}
-                disabled={isProcessing || queuedJobs.length === 0}
+                disabled={isProcessing || queuedJobs.length === 0 || !apiKey}
                 className="w-full md:w-auto px-16 py-4 bg-indigo-600 text-white font-bold rounded-lg text-lg transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-indigo-500/50 flex items-center justify-center mx-auto disabled:bg-gray-600 disabled:cursor-not-allowed"
-                whileHover={{ scale: isProcessing || queuedJobs.length === 0 ? 1 : 1.05, y: isProcessing || queuedJobs.length === 0 ? 0 : -2 }}
-                whileTap={{ scale: isProcessing || queuedJobs.length === 0 ? 1 : 0.95 }}
+                whileHover={{ scale: isProcessing || queuedJobs.length === 0 || !apiKey ? 1 : 1.05, y: isProcessing || queuedJobs.length === 0 || !apiKey ? 0 : -2 }}
+                whileTap={{ scale: isProcessing || queuedJobs.length === 0 || !apiKey ? 1 : 0.95 }}
               >
                 {isProcessing ? (
                   <>

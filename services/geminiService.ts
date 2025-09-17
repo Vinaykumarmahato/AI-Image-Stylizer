@@ -1,40 +1,74 @@
+import { GoogleGenAI, Modality, GenerateContentResponse } from "@google/genai";
+import { fileToBase64, getMimeType } from '../utils/fileUtils';
 
 /**
- * Sends an image and a prompt to the backend service for AI processing.
+ * Sends an image and a prompt to the Gemini API for processing.
  * @param imageFile The image file to edit.
  * @param prompt The text prompt describing the desired edits.
+ * @param apiKey The user's Google AI API key.
  * @returns A promise that resolves to the base64 encoded string of the generated image.
  */
-export const editImageWithAI = async (imageFile: File, prompt: string): Promise<string> => {
-    const formData = new FormData();
-    formData.append('image', imageFile);
-    formData.append('prompt', prompt);
+export const editImageWithAI = async (imageFile: File, prompt: string, apiKey: string): Promise<string> => {
+    if (!apiKey) {
+        throw new Error("Google AI API Key is required.");
+    }
+    const ai = new GoogleGenAI({ apiKey });
 
     try {
-        const response = await fetch('/api/stylize', {
-            method: 'POST',
-            body: formData,
+        const base64ImageData = await fileToBase64(imageFile);
+        const mimeType = getMimeType(imageFile);
+
+        const imagePart = {
+            inlineData: {
+                data: base64ImageData,
+                mimeType: mimeType,
+            },
+        };
+
+        const textPart = {
+            text: prompt,
+        };
+
+        const response: GenerateContentResponse = await ai.models.generateContent({
+            model: 'gemini-2.5-flash-image-preview',
+            contents: {
+                parts: [imagePart, textPart],
+            },
+            config: {
+                responseModalities: [Modality.IMAGE, Modality.TEXT],
+            },
         });
 
-        const data = await response.json();
+        const candidate = response.candidates?.[0];
 
-        if (!response.ok) {
-            // If the server returns an error, use the message from the JSON response
-            throw new Error(data.error || 'An unknown error occurred on the server.');
+        if (!candidate || !candidate.content || !candidate.content.parts) {
+            if (response.promptFeedback?.blockReason) {
+                throw new Error(`Request was blocked: ${response.promptFeedback.blockReason}`);
+            }
+            throw new Error('API response was empty or invalid. The request may have been blocked for safety reasons.');
         }
 
-        if (data.imageData) {
-            return data.imageData;
-        } else {
-            throw new Error('Invalid response from server: missing imageData.');
+        const imagePartFromResponse = candidate.content.parts.find(part => part.inlineData);
+
+        if (imagePartFromResponse && imagePartFromResponse.inlineData) {
+            return imagePartFromResponse.inlineData.data;
         }
+        
+        const textPartFromResponse = candidate.content.parts.find(part => part.text);
+        if (textPartFromResponse && textPartFromResponse.text) {
+             throw new Error(`API returned text instead of an image: "${textPartFromResponse.text}"`);
+        }
+
+        throw new Error('API did not return an image. It may have refused the request or returned only text.');
 
     } catch (error) {
-        console.error('Error communicating with backend:', error);
-        // Re-throw the error to be caught by the UI component
+        console.error('Error calling Gemini API:', error);
         if (error instanceof Error) {
+            if (error.message.includes('API key not valid')) {
+                 throw new Error('The API key is not valid. Please check your key and try again.');
+            }
             throw new Error(`Failed to generate image: ${error.message}`);
         }
-        throw new Error('Failed to generate image due to a network or server error.');
+        throw new Error('An unknown error occurred while generating the image.');
     }
 };
